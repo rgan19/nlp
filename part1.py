@@ -30,6 +30,14 @@ def train (file=None):
 			else: 
 				y_count_dict[tag] = 1
 
+	#all other possible emission probabilities
+	for i in range(len(tags)):
+		for j in range(len(obs)):
+			word = obs[j]
+			tag = tags[i]
+			if (word, tag) not in emission_count_dict:
+				emission_count_dict[(word, tag)] = 0
+
 	calc_e(y_count_dict, emission_count_dict)
 
 def calc_e(y_count_dict, emission_count_dict):
@@ -39,7 +47,10 @@ def calc_e(y_count_dict, emission_count_dict):
 		e[(word, tag)] = prob
 
 		str_key = "emission:" + tag + "+" + word
-		val = math.log(prob)
+		if emission_count_dict[(word, tag)] == 0:
+			val  = - math.inf
+		else:
+			val = math.log(prob)
 
 		f[str_key] = val
 
@@ -49,7 +60,6 @@ def calc_e(y_count_dict, emission_count_dict):
 
 def train_transition(train):
 	
-
 	with open(train, 'r') as f:
 		data = f.read().rstrip().splitlines()
 
@@ -97,7 +107,19 @@ def train_transition(train):
 
 	y_count_dict["START"] = count_start
 	y_count_dict["STOP"] = count_start
-	# print ("Count START", count_start)
+
+	# for all the possible tag combinations in tags list (excluding start and stop)
+	for i in range(len(tags)):
+		if ("START", tags[i]) not in counts_uv:
+			counts_uv[("START", tags[i])] = 0
+		if (tags[i], "STOP") not in counts_uv:
+			counts_uv[(tags[i], "STOP")] = 0
+
+		for j in range(i+1, len(tags)):
+			curr = tags[i]
+			next_tag = tags[j]
+			if (curr, next_tag) not in counts_uv:
+				counts_uv[(curr, next_tag)] = 0
 	return calc_transition(y_count_dict, counts_uv)
 
 def calc_transition(y_count_dict, counts_uv):
@@ -109,7 +131,10 @@ def calc_transition(y_count_dict, counts_uv):
 		q[(y_i, y_j)] = count / y_count_dict[y_j]
 
 		str_key = "transition:" + y_j + "+" + y_i
-		val = math.log(count/y_count_dict[y_j])
+		if count == 0:
+			val  = - math.inf
+		else:
+			val = math.log(count/y_count_dict[y_j])
 		f[str_key] = val
 	return q
 
