@@ -115,7 +115,7 @@ def train_transition(train):
 		if (tags[i], "STOP") not in counts_uv:
 			counts_uv[(tags[i], "STOP")] = 0
 
-		for j in range(i+1, len(tags)):
+		for j in range(len(tags)):
 			curr = tags[i]
 			next_tag = tags[j]
 			if (curr, next_tag) not in counts_uv:
