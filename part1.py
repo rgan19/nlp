@@ -56,8 +56,6 @@ def calc_e(y_count_dict, emission_count_dict):
 
 	return e
 	
-	
-
 def train_transition(train):
 	
 	with open(train, 'r') as f:
@@ -139,23 +137,23 @@ def calc_transition(y_count_dict, counts_uv):
 	return q
 
 
-def get_features(file=None):
+def get_features(file, output_name):
 	train(file)
 	train_transition(file)
 
 	# To write the list of features into a file to check
-	with open("results", "w") as output:
+	with open(output_name, "w") as output:
 		for (key, val) in f.items():
 			output.write("{} {} \n".format(key, val))
 
 	return f
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2: #original = 3
-        print ('Please make sure you have installed Python 3.4 or above!')
-        print ("Usage on Windows:  python emission.py [train file]")
-        print ("Usage on Linux/Mac:  python3 emission.py [train file]")
-        sys.exit()
-
-    e_dict = get_features(sys.argv[1])
+	if len(sys.argv) < 3: #original = 3
+		print ('Please make sure you have installed Python 3.4 or above!')
+		print ("Usage on Windows:  python emission.py [train file] [output file name]")
+		print ("Usage on Linux/Mac:  python3 emission.py [train file] [output file name]")
+		#Example: python3 part1.py data/EN/train data/EN/features
+		sys.exit()
+	e_dict = get_features(sys.argv[1], sys.argv[2])
    
