@@ -1,0 +1,20 @@
+current:  
+  - bias  
+  - current_word.lower()  
+  - current_word[-4] 
+  - current_word[-3]  
+  - current_word[-2]  
+  - current_word.isupper()  
+  - current_word.istitle()  
+  - current_word.isdigit()  
+  - current_word.islower()  
+previous:  
+  - previous_word[-2]
+  - previous_word.lower()  
+  - previous_word.istitle()  
+  - previous_word.isupper()  
+next:
+  - next_word[-2]
+  - next_word.lower()
+  - next_word.istitle()
+  - next_word.isupper()

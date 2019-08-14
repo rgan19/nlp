@@ -1,4 +1,14 @@
 /data
 /Evaluation_Script
 /results
-/dev.p2.out
+/__pycache__
+/test
+
+/trial_crf.py
+/memm.py
+/part3.py
+/dev.p5.out
+/sp.p5.out
+/own_part3.py
+/svm.py
+/part5/sp
