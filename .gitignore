@@ -5,7 +5,10 @@
 /test
 
 /trial_crf.py
-/part5/hmm
 /memm.py
 /part3.py
 /dev.p5.out
+/sp.p5.out
+/own_part3.py
+/svm.py
+/part5/sp
