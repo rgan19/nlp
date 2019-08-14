@@ -151,8 +151,8 @@ def get_features(file, output_name):
 if __name__ == "__main__":
 	if len(sys.argv) < 3: #original = 3
 		print ('Please make sure you have installed Python 3.4 or above!')
-		print ("Usage on Windows:  python emission.py [train file] [output file name]")
-		print ("Usage on Linux/Mac:  python3 emission.py [train file] [output file name]")
+		print ("Usage on Windows:  python part1.py [train file] [output file name]")
+		print ("Usage on Linux/Mac:  python3 part1.py [train file] [output file name]")
 		#Example: python3 part1.py data/EN/train data/EN/features
 		sys.exit()
 	e_dict = get_features(sys.argv[1], sys.argv[2])
