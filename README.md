@@ -19,7 +19,12 @@ python3 part2.py [dictionary file from part 1] [dev.in] [dev.out]
 python3 part2.py results data/EN/dev.in data/EN/dev.p2.out
 ```
 
-
+### Part 3: Forward, Backward Algorithm
+```
+python part3.py [features file] [train file] [grad file path]
+#example
+python part3.py data/EN/features data/EN/train data/EN/gradient
+```
 
 ### Part 5: Viterbi Algorithm 
 
